@@ -7,7 +7,7 @@ resource "aws_instance" "Single_bastion_server" {
   user_data = file("${path.module}/user_data.sh")
 
   tags = {
-    Name = "Detroit Web Server"
+    Name = "Single_bastion_server"
   }
 }
 
