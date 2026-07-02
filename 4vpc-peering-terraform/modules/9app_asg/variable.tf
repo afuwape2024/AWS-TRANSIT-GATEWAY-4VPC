@@ -62,6 +62,12 @@ variable "instance_type" {
   type = string
 }
 
+variable "key_pair_name" {
+  description = "Existing EC2 key pair name to attach to instances"
+  type        = string
+  default     = null
+}
+
 variable "min_size" {
   default = 1
 }

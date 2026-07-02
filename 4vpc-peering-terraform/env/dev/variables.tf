@@ -111,6 +111,12 @@ variable "instance_type" {
   type = string 
 }
 
+variable "key_pair_name" {
+  type        = string
+  description = "EC2 key pair name for SSH access"
+  default     = null
+}
+
 variable "outside_cidr_block" {
   type = string
   description = "traffic coming from outside"

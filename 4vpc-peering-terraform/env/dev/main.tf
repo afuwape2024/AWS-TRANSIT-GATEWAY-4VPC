@@ -185,6 +185,7 @@ module "auto_scale" {
   indianapolis_target_group_arn = module.load_balancer.indianapolis_public_target_group
   image_id = var.image_id
   instance_type = var.instance_type
+  key_pair_name = var.key_pair_name
 
   detroit_vpc = module.detroit_vpc.detroit_vpc
   detroit_vpc_public_subnet = module.detroit_vpc.detroit_vpc_public_subnet

@@ -1,8 +1,14 @@
 #file to be ignored by git
+*.terraform
+.terraform.lock.hcl
+.override.tf
+.override.tf.json
+*.tfvars
+*.tfvars.json
+crash.log
 *.tfstate
 *.tfstate.backup
-.terraform/
-*.terraform.lock.hcl
-*.terraform.tfstate
-*.terraform.tfstate.backup
-
+.terraform.tfstate
+.terraform.tfstate.backup
+.access_code.sh
+.keypair.pem

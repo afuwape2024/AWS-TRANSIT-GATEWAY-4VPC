@@ -2,6 +2,7 @@ resource "aws_launch_template" "detroit_public_template" {
   name_prefix   = "public-server"
   image_id      = var.image_id
   instance_type = var.instance_type
+  key_name      = var.key_pair_name
 
   network_interfaces {
     associate_public_ip_address = true
@@ -69,6 +70,7 @@ resource "aws_launch_template" "chicago_public_template" {
   name_prefix   = "public-server"
   image_id      = var.image_id
   instance_type = var.instance_type
+  key_name      = var.key_pair_name
 
   network_interfaces {
     associate_public_ip_address = true
@@ -137,6 +139,7 @@ resource "aws_launch_template" "columbus_public_template" {
   name_prefix   = "public-server"
   image_id      = var.image_id
   instance_type = var.instance_type
+  key_name      = var.key_pair_name
 
   network_interfaces {
     associate_public_ip_address = true
@@ -205,6 +208,7 @@ resource "aws_launch_template" "indianapolis_public_template" {
   name_prefix   = "public-server"
   image_id      = var.image_id
   instance_type = var.instance_type
+  key_name      = var.key_pair_name
 
   network_interfaces {
     associate_public_ip_address = true

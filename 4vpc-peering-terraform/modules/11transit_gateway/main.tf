@@ -36,6 +36,7 @@ resource "aws_ec2_transit_gateway_route_table" "detroit_transit_gateway_route_ta
 resource "aws_ec2_transit_gateway_route_table_association" "detroit_transit_gateway_route_table_association" {
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.detroit_transit_vpc.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.detroit_transit_gateway_route_table.id
+  replace_existing_association   = true
 }
 
 #For propagation of transit gateway route table
@@ -88,6 +89,7 @@ resource "aws_ec2_transit_gateway_route_table" "chicago_transit_gateway_route_ta
 resource "aws_ec2_transit_gateway_route_table_association" "chicago_transit_gateway_route_table_association" {
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.chicago_transit_vpc.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.chicago_transit_gateway_route_table.id
+  replace_existing_association   = true
 }
 
 # For propagation of transit gateway route table
@@ -140,6 +142,7 @@ resource "aws_ec2_transit_gateway_route_table" "columbus_transit_gateway_route_t
 resource "aws_ec2_transit_gateway_route_table_association" "columbus_transit_gateway_route_table_association" {
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.columbus_transit_vpc.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.columbus_transit_gateway_route_table.id
+  replace_existing_association   = true
 }
 
 # For propagation of transit gateway route table
@@ -193,6 +196,7 @@ resource "aws_ec2_transit_gateway_route_table" "indianapolis_transit_gateway_rou
 resource "aws_ec2_transit_gateway_route_table_association" "indianapolis_transit_gateway_route_table_association" {
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.indianapolis_transit_vpc.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.indianapolis_transit_gateway_route_table.id
+  replace_existing_association   = true
 }
 
 # For propagation of transit gateway route table
