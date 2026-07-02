@@ -8,6 +8,7 @@ availability_zones = ["us-east-2a", "us-east-2b"]
 image_id= "ami-06e3c045d79fd65d9"
 instance_type = "t3.micro"
 outside_cidr_block = "0.0.0.0/0"
+key_pair_name = "keypair"
 
 chicago_vpc = "chicago_vpc"
 chicago_vpc_cidr_block = "10.1.0.0/16"

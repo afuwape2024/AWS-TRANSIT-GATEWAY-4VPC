@@ -4,6 +4,7 @@ resource "aws_instance" "Single_bastion_server" {
   instance_type = var.instance_type
   subnet_id = var.detroit_vpc_public_subnet
   vpc_security_group_ids = [var.detroit_public_sg_id]
+  key_name = var.key_pair_name
   user_data = file("${path.module}/user_data.sh")
 
   tags = {
