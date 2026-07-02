@@ -12,3 +12,4 @@ crash.log
 .terraform.tfstate.backup
 .access_code.sh
 .keypair.pem
+*.keypair.pem
