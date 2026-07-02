@@ -6,7 +6,7 @@ locals {
   instance_type = var.instance_type
   # Public NACL (local will be configure in NACL folder main.tf)
 
-  web_nacl = {
+  public_nacl = {
     ingress_http = {
       rule_no    = 100
       protocol   = "tcp"
@@ -47,28 +47,28 @@ locals {
   # ========================
   # ========================
   # Private/app NACL rules per city 
-  # ONLY access from the web_subnet
+  # ONLY access from the public_subnet
 
   app_nacls = {
     detroit = {
-      web_cidrs = var.detroit_web_subnet_cidr_block
+      public_cidrs = var.detroit_public_subnet_cidr_block
       db_cidrs  = var.detroit_database_subnet_cidr_block
-      cidr_block = var.detroit_web_subnet_cidr_block[0]
+      cidr_block = var.detroit_public_subnet_cidr_block[0]
     }
     chicago = {
-      web_cidrs = var.chicago_web_subnet_cidr_block
+      public_cidrs = var.chicago_public_subnet_cidr_block
       db_cidrs  = var.chicago_database_subnet_cidr_block
-      cidr_block = var.chicago_web_subnet_cidr_block[0]
+      cidr_block = var.chicago_public_subnet_cidr_block[0]
     }
     columbus = {
-      web_cidrs = var.columbus_web_subnet_cidr_block
+      public_cidrs = var.columbus_public_subnet_cidr_block
       db_cidrs  = var.columbus_database_subnet_cidr_block
-      cidr_block = var.columbus_web_subnet_cidr_block[0]
+      cidr_block = var.columbus_public_subnet_cidr_block[0]
     }
     indianapolis = {
-      web_cidrs = var.indianapolis_web_subnet_cidr_block
+      public_cidrs = var.indianapolis_public_subnet_cidr_block
       db_cidrs  = var.indianapolis_database_subnet_cidr_block
-      cidr_block = var.indianapolis_web_subnet_cidr_block[0]
+      cidr_block = var.indianapolis_public_subnet_cidr_block[0]
     }
   }
 
@@ -100,8 +100,8 @@ locals {
   # ========================
   # ========================
   ports = {
-    web_http  = 80
-    web_https = 443
+    public_http  = 80
+    public_https = 443
     app       = 8080
     mysql     = 3306
     ephemeral_from = 1024

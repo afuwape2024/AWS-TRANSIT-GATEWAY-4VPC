@@ -10,7 +10,7 @@ variable "detroit_vpc_cidr_block" {
   description = "the CIDR block for the detroit VPC"
 }
 
-variable "detroit_web_subnet_cidr_block" {
+variable "detroit_public_subnet_cidr_block" {
   type = list(string)
   description = "the list of CIDR blocks for the web subnets"
 }
@@ -34,7 +34,7 @@ variable "chicago_vpc_cidr_block" {
   description = "the CIDR block for the chicago VPC"
 }
 
-variable "chicago_web_subnet_cidr_block" {
+variable "chicago_public_subnet_cidr_block" {
   type = list(string)
   description = "the list of CIDR blocks for the web subnets"
 }
@@ -57,7 +57,7 @@ variable "columbus_vpc_cidr_block" {
   description = "the CIDR block for the detroit VPC"
 }
 
-variable "columbus_web_subnet_cidr_block" {
+variable "columbus_public_subnet_cidr_block" {
   type = list(string)
   description = "the list of CIDR blocks for the web subnets"
 }
@@ -81,7 +81,7 @@ variable "indianapolis_vpc_cidr_block" {
   description = "the CIDR block for the indianapolis VPC"
 }
 
-variable "indianapolis_web_subnet_cidr_block" {
+variable "indianapolis_public_subnet_cidr_block" {
   type = list(string)
   description = "the list of CIDR blocks for the web subnets"
 }

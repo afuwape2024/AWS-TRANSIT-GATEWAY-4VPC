@@ -10,25 +10,25 @@ resource "aws_vpc" "detroit_vpc" { #this is for detroit vpc
 }
 
 #==================================================================
-resource "aws_subnet" "detroit_vpc_web_subnet_0" {
+resource "aws_subnet" "detroit_vpc_public_subnet_0" {
   vpc_id                  = aws_vpc.detroit_vpc.id
-  cidr_block              = var.detroit_web_subnet_cidr_block[0]
+  cidr_block              = var.detroit_public_subnet_cidr_block[0]
   availability_zone       = var.availability_zones[0]
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "detroit_vpc_web_subnet_0"
+    Name = "detroit_vpc_public_subnet_0"
   }
 }
 
-resource "aws_subnet" "detroit_vpc_web_subnet_1" {
+resource "aws_subnet" "detroit_vpc_public_subnet_1" {
   vpc_id                  = aws_vpc.detroit_vpc.id
-  cidr_block              = var.detroit_web_subnet_cidr_block[1]
+  cidr_block              = var.detroit_public_subnet_cidr_block[1]
   availability_zone       = var.availability_zones[1]
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "detroit_vpc_web_subnet_1"
+    Name = "detroit_vpc_public_subnet_1"
   }
 }
 

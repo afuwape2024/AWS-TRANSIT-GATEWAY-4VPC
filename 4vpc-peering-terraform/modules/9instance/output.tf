@@ -1,4 +1,4 @@
-output "web_server" {
+output "public_server" {
   value = aws_instance.app_server.id
 }
 output "app_server" {

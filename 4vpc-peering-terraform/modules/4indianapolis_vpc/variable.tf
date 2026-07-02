@@ -6,7 +6,7 @@ variable "indianapolis_vpc_cidr_block" {
   type = string
 }
 
-variable "indianapolis_web_subnet_cidr_block" {
+variable "indianapolis_public_subnet_cidr_block" {
   type = list(string)
 }
 

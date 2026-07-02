@@ -1,11 +1,11 @@
-resource "aws_launch_template" "detroit_web_template" {
-  name_prefix   = "web-server"
+resource "aws_launch_template" "detroit_public_template" {
+  name_prefix   = "public-server"
   image_id      = var.image_id
   instance_type = var.instance_type
 
   network_interfaces {
     associate_public_ip_address = true
-    security_groups             = [var.detroit_web_sg_id]
+    security_groups             = [var.detroit_public_sg_id]
   }
 
   placement {
@@ -18,25 +18,25 @@ resource "aws_launch_template" "detroit_web_template" {
     resource_type = "instance"
 
     tags = {
-      Name = "detroit_web_template"
+      Name = "detroit_public_template"
     }
   }
 }
 #======================================================================================
 
-resource "aws_autoscaling_group" "detroit_web_scaling_group" {
-  name                      = "web_scaling_group"
+resource "aws_autoscaling_group" "detroit_public_scaling_group" {
+  name                      = "detroit_public_scaling_group"
   max_size                  = var.max_size
   min_size                  = var.min_size
   health_check_type         = "EC2"
   desired_capacity          = var.desired_capacity
   force_delete              = true
  #placement_group           = aws_placement_group.test.id
-  vpc_zone_identifier       = [var.detroit_vpc_web_subnet, var.detroit_vpc_web2_subnet]
-  target_group_arns         = [var.target_group_arn]
+  vpc_zone_identifier       = [var.detroit_vpc_public_subnet, var.detroit_vpc_web2_subnet]
+  target_group_arns         = [var.detroit_target_group_arn]
 
   launch_template {
-    id      = aws_launch_template.detroit_web_template.id
+    id      = aws_launch_template.detroit_public_template.id
     version = "$Latest"
   }
 
@@ -65,14 +65,14 @@ resource "aws_autoscaling_group" "detroit_web_scaling_group" {
 #======================================================================================
 #======================================================================================
 #======================================================================================
-resource "aws_launch_template" "chicago_web_template" {
-  name_prefix   = "web-server"
+resource "aws_launch_template" "chicago_public_template" {
+  name_prefix   = "public-server"
   image_id      = var.image_id
   instance_type = var.instance_type
 
   network_interfaces {
     associate_public_ip_address = true
-    security_groups             = [var.chicago_web_sg_id]
+    security_groups             = [var.chicago_public_sg_id]
   }
 
   placement {
@@ -85,25 +85,25 @@ resource "aws_launch_template" "chicago_web_template" {
     resource_type = "instance"
 
     tags = {
-      Name = "chicago_web_template"
+      Name = "chicago_public_template"
     }
   }
 }
 #======================================================================================
 
-resource "aws_autoscaling_group" "chicago_web_scaling_group" {
-  name                      = "web_scaling_group"
+resource "aws_autoscaling_group" "chicago_public_scaling_group" {
+  name                      = "chicago_public_scaling_group"
   max_size                  = var.max_size
   min_size                  = var.min_size
   health_check_type         = "EC2"
   desired_capacity          = var.desired_capacity
   force_delete              = true
  #placement_group           = aws_placement_group.test.id
-  vpc_zone_identifier       = [var.chicago_vpc_web_subnet, var.chicago_vpc_web2_subnet]
-  target_group_arns         = [var.target_group_arn]
+  vpc_zone_identifier       = [var.chicago_vpc_public_subnet, var.chicago_vpc_web2_subnet]
+  target_group_arns         = [var.chicago_target_group_arn]
 
   launch_template {
-    id      = aws_launch_template.chicago_web_template.id
+    id      = aws_launch_template.chicago_public_template.id
     version = "$Latest"
   }
 
@@ -133,14 +133,14 @@ resource "aws_autoscaling_group" "chicago_web_scaling_group" {
 #======================================================================================
 #======================================================================================
 #======================================================================================
-resource "aws_launch_template" "columbus_web_template" {
-  name_prefix   = "web-server"
+resource "aws_launch_template" "columbus_public_template" {
+  name_prefix   = "public-server"
   image_id      = var.image_id
   instance_type = var.instance_type
 
   network_interfaces {
     associate_public_ip_address = true
-    security_groups             = [var.columbus_web_sg_id]
+    security_groups             = [var.columbus_public_sg_id]
   }
 
   placement {
@@ -153,25 +153,25 @@ resource "aws_launch_template" "columbus_web_template" {
     resource_type = "instance"
 
     tags = {
-      Name = "columbus_web_template"
+      Name = "columbus_public_template"
     }
   }
 }
 #======================================================================================
 
-resource "aws_autoscaling_group" "columbus_web_scaling_group" {
-  name                      = "web_scaling_group"
+resource "aws_autoscaling_group" "columbus_public_scaling_group" {
+  name                      = "columbus_public_scaling_group"
   max_size                  = var.max_size
   min_size                  = var.min_size
   health_check_type         = "EC2"
   desired_capacity          = var.desired_capacity
   force_delete              = true
  #placement_group           = aws_placement_group.test.id
-  vpc_zone_identifier       = [var.columbus_vpc_web_subnet, var.columbus_vpc_web2_subnet]
-  target_group_arns         = [var.target_group_arn]
+  vpc_zone_identifier       = [var.columbus_vpc_public_subnet, var.columbus_vpc_web2_subnet]
+  target_group_arns         = [var.columbus_target_group_arn]
 
   launch_template {
-    id      = aws_launch_template.columbus_web_template.id
+    id      = aws_launch_template.columbus_public_template.id
     version = "$Latest"
   }
 
@@ -201,14 +201,14 @@ resource "aws_autoscaling_group" "columbus_web_scaling_group" {
 #======================================================================================
 #======================================================================================
 
-resource "aws_launch_template" "indianapolis_web_template" {
-  name_prefix   = "web-server"
+resource "aws_launch_template" "indianapolis_public_template" {
+  name_prefix   = "public-server"
   image_id      = var.image_id
   instance_type = var.instance_type
 
   network_interfaces {
     associate_public_ip_address = true
-    security_groups             = [var.indianapolis_web_sg_id]
+    security_groups             = [var.indianapolis_public_sg_id]
   }
 
   placement {
@@ -221,25 +221,25 @@ resource "aws_launch_template" "indianapolis_web_template" {
     resource_type = "instance"
 
     tags = {
-      Name = "indianapolis_web_template"
+      Name = "indianapolis_public_template"
     }
   }
 }
 #======================================================================================
 
-resource "aws_autoscaling_group" "indianapolis_web_scaling_group" {
-  name                      = "web_scaling_group"
+resource "aws_autoscaling_group" "indianapolis_public_scaling_group" {
+  name                      = "indianapolis_public_scaling_group"
   max_size                  = var.max_size
   min_size                  = var.min_size
   health_check_type         = "EC2"
   desired_capacity          = var.desired_capacity
   force_delete              = true
  #placement_group           = aws_placement_group.test.id
-  vpc_zone_identifier       = [var.indianapolis_vpc_web_subnet, var.indianapolis_vpc_web2_subnet]
-  target_group_arns         = [var.target_group_arn]
+  vpc_zone_identifier       = [var.indianapolis_vpc_public_subnet, var.indianapolis_vpc_web2_subnet]
+  target_group_arns         = [var.indianapolis_target_group_arn]
 
   launch_template {
-    id      = aws_launch_template.indianapolis_web_template.id
+    id      = aws_launch_template.indianapolis_public_template.id
     version = "$Latest"
   }
 

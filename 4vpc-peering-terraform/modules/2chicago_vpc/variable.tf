@@ -6,7 +6,7 @@ variable "chicago_vpc_cidr_block" {
 	type = string
 }
 
-variable "chicago_web_subnet_cidr_block" {
+variable "chicago_public_subnet_cidr_block" {
 	type = list(string)
 }
 

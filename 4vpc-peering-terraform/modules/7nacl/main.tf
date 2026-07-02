@@ -1,57 +1,57 @@
 #with using the local in dev folder to configure the NACL rule
 ################## FOR DETROIT INFRASTRUCTURE
 ##################
-resource "aws_network_acl" "detroit_vpc_web_nacl" {
+resource "aws_network_acl" "detroit_vpc_public_nacl" {
   vpc_id = var.detroit_vpc
 
   ingress {
-    rule_no    = local.web_nacl.ingress_http.rule_no
-    protocol   = local.web_nacl.ingress_http.protocol
-    action     = local.web_nacl.ingress_http.action
-    cidr_block = local.web_nacl.ingress_http.cidr_block
-    from_port  = local.web_nacl.ingress_http.from_port
-    to_port    = local.web_nacl.ingress_http.to_port
+    rule_no    = local.public_nacl.ingress_http.rule_no
+    protocol   = local.public_nacl.ingress_http.protocol
+    action     = local.public_nacl.ingress_http.action
+    cidr_block = local.public_nacl.ingress_http.cidr_block
+    from_port  = local.public_nacl.ingress_http.from_port
+    to_port    = local.public_nacl.ingress_http.to_port
   }
 
   ingress {
-    rule_no    = local.web_nacl.ingress_https.rule_no
-    protocol   = local.web_nacl.ingress_https.protocol
-    action     = local.web_nacl.ingress_https.action
-    cidr_block = local.web_nacl.ingress_https.cidr_block
-    from_port  = local.web_nacl.ingress_https.from_port
-    to_port    = local.web_nacl.ingress_https.to_port
+    rule_no    = local.public_nacl.ingress_https.rule_no
+    protocol   = local.public_nacl.ingress_https.protocol
+    action     = local.public_nacl.ingress_https.action
+    cidr_block = local.public_nacl.ingress_https.cidr_block
+    from_port  = local.public_nacl.ingress_https.from_port
+    to_port    = local.public_nacl.ingress_https.to_port
   }
 
   ingress {
-    rule_no    = local.web_nacl.ingress_ephemeral.rule_no
-    protocol   = local.web_nacl.ingress_ephemeral.protocol
-    action     = local.web_nacl.ingress_ephemeral.action
-    cidr_block = local.web_nacl.ingress_ephemeral.cidr_block
-    from_port  = local.web_nacl.ingress_ephemeral.from_port
-    to_port    = local.web_nacl.ingress_ephemeral.to_port
+    rule_no    = local.public_nacl.ingress_ephemeral.rule_no
+    protocol   = local.public_nacl.ingress_ephemeral.protocol
+    action     = local.public_nacl.ingress_ephemeral.action
+    cidr_block = local.public_nacl.ingress_ephemeral.cidr_block
+    from_port  = local.public_nacl.ingress_ephemeral.from_port
+    to_port    = local.public_nacl.ingress_ephemeral.to_port
   }
 
   egress {
-    rule_no    = local.web_nacl.egress_all.rule_no
-    protocol   = local.web_nacl.egress_all.protocol
-    action     = local.web_nacl.egress_all.action
-    cidr_block = local.web_nacl.egress_all.cidr_block
-    from_port  = local.web_nacl.egress_all.from_port
-    to_port    = local.web_nacl.egress_all.to_port
+    rule_no    = local.public_nacl.egress_all.rule_no
+    protocol   = local.public_nacl.egress_all.protocol
+    action     = local.public_nacl.egress_all.action
+    cidr_block = local.public_nacl.egress_all.cidr_block
+    from_port  = local.public_nacl.egress_all.from_port
+    to_port    = local.public_nacl.egress_all.to_port
   }
 
   tags = {
-    Name = "detroit_vpc_web_nacl"
+    Name = "detroit_vpc_public_nacl"
   }
 }
-resource "aws_network_acl_association" "detroit_vpc_web_nacl_ass" {
-  subnet_id      = var.detroit_vpc_web_subnet
-  network_acl_id = aws_network_acl.detroit_vpc_web_nacl.id
+resource "aws_network_acl_association" "detroit_vpc_public_nacl_ass" {
+  subnet_id      = var.detroit_vpc_public_subnet
+  network_acl_id = aws_network_acl.detroit_vpc_public_nacl.id
 }
 
 resource "aws_network_acl_association" "detroit_vpc_public_nacl_ass_2" {
   subnet_id      = var.detroit_vpc_web2_subnet
-  network_acl_id = aws_network_acl.detroit_vpc_web_nacl.id
+  network_acl_id = aws_network_acl.detroit_vpc_public_nacl.id
 }
 #===================================================================
 
@@ -157,56 +157,56 @@ resource "aws_network_acl" "detroit_vpc_database_nacl" {
 ##################
 ################## FOR CHICAGO INFRASTRUCTURE
 ##################
-resource "aws_network_acl" "chicago_vpc_web_nacl" {
+resource "aws_network_acl" "chicago_vpc_public_nacl" {
   vpc_id = var.chicago_vpc
 
   ingress {
-    rule_no    = local.web_nacl.ingress_http.rule_no
-    protocol   = local.web_nacl.ingress_http.protocol
-    action     = local.web_nacl.ingress_http.action
-    cidr_block = local.web_nacl.ingress_http.cidr_block
-    from_port  = local.web_nacl.ingress_http.from_port
-    to_port    = local.web_nacl.ingress_http.to_port
+    rule_no    = local.public_nacl.ingress_http.rule_no
+    protocol   = local.public_nacl.ingress_http.protocol
+    action     = local.public_nacl.ingress_http.action
+    cidr_block = local.public_nacl.ingress_http.cidr_block
+    from_port  = local.public_nacl.ingress_http.from_port
+    to_port    = local.public_nacl.ingress_http.to_port
   }
 
   ingress {
-    rule_no    = local.web_nacl.ingress_https.rule_no
-    protocol   = local.web_nacl.ingress_https.protocol
-    action     = local.web_nacl.ingress_https.action
-    cidr_block = local.web_nacl.ingress_https.cidr_block
-    from_port  = local.web_nacl.ingress_https.from_port
-    to_port    = local.web_nacl.ingress_https.to_port
+    rule_no    = local.public_nacl.ingress_https.rule_no
+    protocol   = local.public_nacl.ingress_https.protocol
+    action     = local.public_nacl.ingress_https.action
+    cidr_block = local.public_nacl.ingress_https.cidr_block
+    from_port  = local.public_nacl.ingress_https.from_port
+    to_port    = local.public_nacl.ingress_https.to_port
   }
 
   ingress {
-    rule_no    = local.web_nacl.ingress_ephemeral.rule_no
-    protocol   = local.web_nacl.ingress_ephemeral.protocol
-    action     = local.web_nacl.ingress_ephemeral.action
-    cidr_block = local.web_nacl.ingress_ephemeral.cidr_block
-    from_port  = local.web_nacl.ingress_ephemeral.from_port
-    to_port    = local.web_nacl.ingress_ephemeral.to_port
+    rule_no    = local.public_nacl.ingress_ephemeral.rule_no
+    protocol   = local.public_nacl.ingress_ephemeral.protocol
+    action     = local.public_nacl.ingress_ephemeral.action
+    cidr_block = local.public_nacl.ingress_ephemeral.cidr_block
+    from_port  = local.public_nacl.ingress_ephemeral.from_port
+    to_port    = local.public_nacl.ingress_ephemeral.to_port
   }
 
   egress {
-    rule_no    = local.web_nacl.egress_all.rule_no
-    protocol   = local.web_nacl.egress_all.protocol
-    action     = local.web_nacl.egress_all.action
-    cidr_block = local.web_nacl.egress_all.cidr_block
-    from_port  = local.web_nacl.egress_all.from_port
-    to_port    = local.web_nacl.egress_all.to_port
+    rule_no    = local.public_nacl.egress_all.rule_no
+    protocol   = local.public_nacl.egress_all.protocol
+    action     = local.public_nacl.egress_all.action
+    cidr_block = local.public_nacl.egress_all.cidr_block
+    from_port  = local.public_nacl.egress_all.from_port
+    to_port    = local.public_nacl.egress_all.to_port
   }
 
-  tags = { Name = "chicago_vpc_web_nacl" }
+  tags = { Name = "chicago_vpc_public_nacl" }
 }
 
-resource "aws_network_acl_association" "chicago_web_1" {
-  subnet_id      = var.chicago_vpc_web_subnet
-  network_acl_id = aws_network_acl.chicago_vpc_web_nacl.id
+resource "aws_network_acl_association" "chicago_public_1" {
+  subnet_id      = var.chicago_vpc_public_subnet
+  network_acl_id = aws_network_acl.chicago_vpc_public_nacl.id
 }
 
-resource "aws_network_acl_association" "chicago_web_2" {
+resource "aws_network_acl_association" "chicago_public_2" {
   subnet_id      = var.chicago_vpc_web2_subnet
-  network_acl_id = aws_network_acl.chicago_vpc_web_nacl.id
+  network_acl_id = aws_network_acl.chicago_vpc_public_nacl.id
 }
 
 resource "aws_network_acl" "chicago_vpc_app_nacl" {
@@ -301,20 +301,20 @@ resource "aws_network_acl" "chicago_vpc_database_nacl" {
 ################## FOR COLUMBUS PROVISION
 ##################
 
-resource "aws_network_acl" "columbus_vpc_web_nacl" {
+resource "aws_network_acl" "columbus_vpc_public_nacl" {
   vpc_id = var.columbus_vpc
   # same ingress/egress as above
-  tags = { Name = "columbus_vpc_web_nacl" }
+  tags = { Name = "columbus_vpc_public_nacl" }
 }
 
-resource "aws_network_acl_association" "columbus_web_1" {
-  subnet_id      = var.columbus_vpc_web_subnet
-  network_acl_id = aws_network_acl.columbus_vpc_web_nacl.id
+resource "aws_network_acl_association" "columbus_public_1" {
+  subnet_id      = var.columbus_vpc_public_subnet
+  network_acl_id = aws_network_acl.columbus_vpc_public_nacl.id
 }
 
-resource "aws_network_acl_association" "columbus_web_2" {
+resource "aws_network_acl_association" "columbus_public_2" {
   subnet_id      = var.columbus_vpc_web2_subnet
-  network_acl_id = aws_network_acl.columbus_vpc_web_nacl.id
+  network_acl_id = aws_network_acl.columbus_vpc_public_nacl.id
 }
 
 resource "aws_network_acl" "columbus_vpc_app_nacl" {
@@ -397,59 +397,59 @@ resource "aws_network_acl" "columbus_vpc_database_nacl" {
 ##################
 ################## FOR INDIANAPOLIS PROVISION
 ##################
-resource "aws_network_acl" "indianapolis_vpc_web_nacl" {
+resource "aws_network_acl" "indianapolis_vpc_public_nacl" {
   vpc_id = var.indianapolis_vpc
 
-  # same ingress/egress as your web_nacl locals
+  # same ingress/egress as your public_nacl locals
   ingress {
-    rule_no    = local.web_nacl.ingress_http.rule_no
-    protocol   = local.web_nacl.ingress_http.protocol
-    action     = local.web_nacl.ingress_http.action
-    cidr_block = local.web_nacl.ingress_http.cidr_block
-    from_port  = local.web_nacl.ingress_http.from_port
-    to_port    = local.web_nacl.ingress_http.to_port
+    rule_no    = local.public_nacl.ingress_http.rule_no
+    protocol   = local.public_nacl.ingress_http.protocol
+    action     = local.public_nacl.ingress_http.action
+    cidr_block = local.public_nacl.ingress_http.cidr_block
+    from_port  = local.public_nacl.ingress_http.from_port
+    to_port    = local.public_nacl.ingress_http.to_port
   }
 
   ingress {
-    rule_no    = local.web_nacl.ingress_https.rule_no
-    protocol   = local.web_nacl.ingress_https.protocol
-    action     = local.web_nacl.ingress_https.action
-    cidr_block = local.web_nacl.ingress_https.cidr_block
-    from_port  = local.web_nacl.ingress_https.from_port
-    to_port    = local.web_nacl.ingress_https.to_port
+    rule_no    = local.public_nacl.ingress_https.rule_no
+    protocol   = local.public_nacl.ingress_https.protocol
+    action     = local.public_nacl.ingress_https.action
+    cidr_block = local.public_nacl.ingress_https.cidr_block
+    from_port  = local.public_nacl.ingress_https.from_port
+    to_port    = local.public_nacl.ingress_https.to_port
   }
 
   ingress {
-    rule_no    = local.web_nacl.ingress_ephemeral.rule_no
-    protocol   = local.web_nacl.ingress_ephemeral.protocol
-    action     = local.web_nacl.ingress_ephemeral.action
-    cidr_block = local.web_nacl.ingress_ephemeral.cidr_block
-    from_port  = local.web_nacl.ingress_ephemeral.from_port
-    to_port    = local.web_nacl.ingress_ephemeral.to_port
+    rule_no    = local.public_nacl.ingress_ephemeral.rule_no
+    protocol   = local.public_nacl.ingress_ephemeral.protocol
+    action     = local.public_nacl.ingress_ephemeral.action
+    cidr_block = local.public_nacl.ingress_ephemeral.cidr_block
+    from_port  = local.public_nacl.ingress_ephemeral.from_port
+    to_port    = local.public_nacl.ingress_ephemeral.to_port
   }
 
   egress {
-    rule_no    = local.web_nacl.egress_all.rule_no
-    protocol   = local.web_nacl.egress_all.protocol
-    action     = local.web_nacl.egress_all.action
-    cidr_block = local.web_nacl.egress_all.cidr_block
-    from_port  = local.web_nacl.egress_all.from_port
-    to_port    = local.web_nacl.egress_all.to_port
+    rule_no    = local.public_nacl.egress_all.rule_no
+    protocol   = local.public_nacl.egress_all.protocol
+    action     = local.public_nacl.egress_all.action
+    cidr_block = local.public_nacl.egress_all.cidr_block
+    from_port  = local.public_nacl.egress_all.from_port
+    to_port    = local.public_nacl.egress_all.to_port
   }
 
   tags = {
-    Name = "indianapolis_vpc_web_nacl"
+    Name = "indianapolis_vpc_public_nacl"
   }
 }
 
-resource "aws_network_acl_association" "indianapolis_web_1" {
-  subnet_id      = var.indianapolis_vpc_web_subnet
-  network_acl_id = aws_network_acl.indianapolis_vpc_web_nacl.id
+resource "aws_network_acl_association" "indianapolis_public_1" {
+  subnet_id      = var.indianapolis_vpc_public_subnet
+  network_acl_id = aws_network_acl.indianapolis_vpc_public_nacl.id
 }
 
-resource "aws_network_acl_association" "indianapolis_web_2" {
+resource "aws_network_acl_association" "indianapolis_public_2" {
   subnet_id      = var.indianapolis_vpc_web2_subnet
-  network_acl_id = aws_network_acl.indianapolis_vpc_web_nacl.id
+  network_acl_id = aws_network_acl.indianapolis_vpc_public_nacl.id
 }
 
 resource "aws_network_acl" "indianapolis_vpc_app_nacl" {

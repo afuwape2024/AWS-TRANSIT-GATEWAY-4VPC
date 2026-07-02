@@ -1,7 +1,7 @@
 #==================================
 #==================================
-output "detroit_web_sg_id" {
-  value = aws_security_group.server_web_sg.id
+output "detroit_public_sg_id" {
+  value = aws_security_group.server_public_sg.id
 }
 
 output "detroit_app_sg_id" {
@@ -14,8 +14,8 @@ output "detroit_db_sg_id" {
 
 #==================================
 #==================================
-output "chicago_web_sg_id" {
-  value = aws_security_group.server_web_sg_chicago.id
+output "chicago_public_sg_id" {
+  value = aws_security_group.server_public_sg_chicago.id
 }
 
 output "chicago_app_sg_id" {
@@ -28,8 +28,8 @@ output "chicago_db_sg_id" {
 
 #==================================
 #==================================
-output "columbus_web_sg_id" {
-  value = aws_security_group.server_web_sg_columbus.id
+output "columbus_public_sg_id" {
+  value = aws_security_group.server_public_sg_columbus.id
 }
 
 output "columbus_app_sg_id" {
@@ -42,8 +42,8 @@ output "columbus_db_sg_id" {
 
 #==================================
 #==================================
-output "indianapolis_web_sg_id" {
-  value = aws_security_group.server_web_sg_indianapolis.id
+output "indianapolis_public_sg_id" {
+  value = aws_security_group.server_public_sg_indianapolis.id
 }
 
 output "indianapolis_app_sg_id" {

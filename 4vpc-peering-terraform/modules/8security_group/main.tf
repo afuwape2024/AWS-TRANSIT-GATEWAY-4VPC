@@ -1,6 +1,6 @@
 #create security group for all the VPC
-resource "aws_security_group" "server_web_sg" {
-  name        = "server_web_sg"
+resource "aws_security_group" "server_public_sg" {
+  name        = "server_public_sg"
   description = "Security group for detroit_server"
     vpc_id      = var.detroit_vpc
     
@@ -25,7 +25,7 @@ resource "aws_security_group" "server_web_sg" {
         cidr_blocks = [var.outside_cidr_block]
     }
     tags = {
-        "Name" = "server_web_sg"
+        "Name" = "server_public_sg"
     }
 }
 
@@ -38,7 +38,7 @@ resource "aws_security_group" "app_sg" {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
-    security_groups = [aws_security_group.server_web_sg.id]
+    security_groups = [aws_security_group.server_public_sg.id]
   }
 }
 
@@ -57,8 +57,8 @@ resource "aws_security_group" "database_sg" {
 
 #########################################
 #########################################
-resource "aws_security_group" "server_web_sg_chicago" {
-  name        = "server_web_sg"
+resource "aws_security_group" "server_public_sg_chicago" {
+  name        = "server_public_sg"
   description = "Security group for chicago_server"
   vpc_id      = var.chicago_vpc
     
@@ -85,7 +85,7 @@ resource "aws_security_group" "server_web_sg_chicago" {
   }
 
   tags = {
-    Name = "server_web_sg"
+    Name = "server_public_sg"
   }
 }
 
@@ -97,7 +97,7 @@ resource "aws_security_group" "app_sg_chicago" {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
-    security_groups = [aws_security_group.server_web_sg_chicago.id]
+    security_groups = [aws_security_group.server_public_sg_chicago.id]
   }
 
 }
@@ -117,8 +117,8 @@ resource "aws_security_group" "database_sg_chicago" {
 #########################################
 #########################################
 #########################################
-resource "aws_security_group" "server_web_sg_columbus" {
-  name        = "server_web_sg"
+resource "aws_security_group" "server_public_sg_columbus" {
+  name        = "server_public_sg"
   description = "Security group for columbus_server"
   vpc_id      = var.columbus_vpc
     
@@ -146,7 +146,7 @@ resource "aws_security_group" "server_web_sg_columbus" {
   }
 
   tags = {
-    Name = "server_web_sg"
+    Name = "server_public_sg"
   }
 }
 
@@ -158,7 +158,7 @@ resource "aws_security_group" "app_sg_columbus" {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
-    security_groups = [aws_security_group.server_web_sg_columbus.id]
+    security_groups = [aws_security_group.server_public_sg_columbus.id]
   }
 
 }
@@ -177,8 +177,8 @@ resource "aws_security_group" "database_sg_columbus" {
 #########################################
 #########################################
 #########################################
-resource "aws_security_group" "server_web_sg_indianapolis" {
-  name        = "server_web_sg"
+resource "aws_security_group" "server_public_sg_indianapolis" {
+  name        = "server_public_sg"
   description = "Security group for indianapolis_server"
   vpc_id      = var.indianapolis_vpc
     
@@ -206,7 +206,7 @@ resource "aws_security_group" "server_web_sg_indianapolis" {
   }
 
   tags = {
-    Name = "server_web_sg"
+    Name = "server_public_sg"
   }
 }
 
@@ -218,7 +218,7 @@ resource "aws_security_group" "app_sg_indianapolis" {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
-    security_groups = [aws_security_group.server_web_sg_indianapolis.id]
+    security_groups = [aws_security_group.server_public_sg_indianapolis.id]
   }
 
 }

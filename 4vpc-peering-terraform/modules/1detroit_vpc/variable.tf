@@ -6,7 +6,7 @@ variable "detroit_vpc_cidr_block" {
 	type = string
 }
 
-variable "detroit_web_subnet_cidr_block" {
+variable "detroit_public_subnet_cidr_block" {
 	type = list(string)
 }
 

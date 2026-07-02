@@ -6,7 +6,7 @@ variable "columbus_vpc_cidr_block" {
   type = string
 }
 
-variable "columbus_web_subnet_cidr_block" {
+variable "columbus_public_subnet_cidr_block" {
   type = list(string)
 }
 

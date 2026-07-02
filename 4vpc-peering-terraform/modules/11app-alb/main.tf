@@ -33,7 +33,7 @@ resource "aws_security_group" "detriot_load_balancer_security_group" {
 #======================================================================================
 #create target group first before load balancer
 
-resource "aws_lb_target_group" "detroit_web_target_group" {
+resource "aws_lb_target_group" "detroit_public_target_group" {
   name_prefix = "webtg-"
   port     = 80
   protocol = "HTTP"
@@ -45,7 +45,7 @@ resource "aws_lb_target_group" "detroit_web_target_group" {
   }
 
   tags = {
-    Name = var.detroit_web_target_group
+    Name = var.detroit_public_target_group
   }
 }
 #======================================================================================
@@ -55,7 +55,7 @@ resource "aws_lb" "detroit_application_lb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.detriot_load_balancer_security_group.id]
-  subnets            = [var.detroit_vpc_web_subnet, var.detroit_vpc_web2_subnet]
+  subnets            = [var.detroit_vpc_public_subnet, var.detroit_vpc_web2_subnet]
 
   tags = {
     Environment = "detroit_application_lb"
@@ -70,7 +70,7 @@ resource "aws_lb_listener" "detroit_app_listener" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.detroit_web_target_group.arn
+    target_group_arn = aws_lb_target_group.detroit_public_target_group.arn
   }
 }
 
@@ -112,7 +112,7 @@ resource "aws_security_group" "chicago_load_balancer_security_group" {
 #======================================================================================
 #create target group first before load balancer
 
-resource "aws_lb_target_group" "chicago_web_target_group" {
+resource "aws_lb_target_group" "chicago_public_target_group" {
   name_prefix = "webtg-"
   port        = 80
   protocol    = "HTTP"
@@ -124,7 +124,7 @@ resource "aws_lb_target_group" "chicago_web_target_group" {
   }
 
   tags = {
-    Name = var.chicago_web_target_group
+    Name = var.chicago_public_target_group
   }
 }
 #======================================================================================
@@ -134,7 +134,7 @@ resource "aws_lb" "chicago_application_lb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.chicago_load_balancer_security_group.id]
-  subnets            = [var.chicago_vpc_web_subnet, var.chicago_vpc_web2_subnet]
+  subnets            = [var.chicago_vpc_public_subnet, var.chicago_vpc_web2_subnet]
 
   tags = {
     Environment = "chicago_application_lb"
@@ -148,7 +148,7 @@ resource "aws_lb_listener" "chicago_app_listener" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.chicago_web_target_group.arn
+    target_group_arn = aws_lb_target_group.chicago_public_target_group.arn
   }
 }
 
@@ -189,7 +189,7 @@ resource "aws_security_group" "columbus_load_balancer_security_group" {
 #======================================================================================
 #create target group first before load balancer
 
-resource "aws_lb_target_group" "columbus_web_target_group" {
+resource "aws_lb_target_group" "columbus_public_target_group" {
   name_prefix = "webtg-"
   port        = 80
   protocol    = "HTTP"
@@ -201,7 +201,7 @@ resource "aws_lb_target_group" "columbus_web_target_group" {
   }
 
   tags = {
-    Name = var.columbus_web_target_group
+    Name = var.columbus_public_target_group
   }
 }
 #======================================================================================
@@ -211,7 +211,7 @@ resource "aws_lb" "columbus_application_lb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.columbus_load_balancer_security_group.id]
-  subnets            = [var.columbus_vpc_web_subnet, var.columbus_vpc_web2_subnet]
+  subnets            = [var.columbus_vpc_public_subnet, var.columbus_vpc_web2_subnet]
 
   tags = {
     Environment = "columbus_application_lb"
@@ -225,7 +225,7 @@ resource "aws_lb_listener" "columbus_app_listener" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.columbus_web_target_group.arn
+    target_group_arn = aws_lb_target_group.columbus_public_target_group.arn
   }
 }
 
@@ -267,7 +267,7 @@ resource "aws_security_group" "indianapolis_load_balancer_security_group" {
 #======================================================================================
 #create target group first before load balancer
 
-resource "aws_lb_target_group" "indianapolis_web_target_group" {
+resource "aws_lb_target_group" "indianapolis_public_target_group" {
   name_prefix = "webtg-"
   port        = 80
   protocol    = "HTTP"
@@ -279,7 +279,7 @@ resource "aws_lb_target_group" "indianapolis_web_target_group" {
   }
 
   tags = {
-    Name = var.indianapolis_web_target_group
+    Name = var.indianapolis_public_target_group
   }
 }
 #======================================================================================
@@ -289,7 +289,7 @@ resource "aws_lb" "indianapolis_application_lb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.indianapolis_load_balancer_security_group.id]
-  subnets            = [var.indianapolis_vpc_web_subnet, var.indianapolis_vpc_web2_subnet]
+  subnets            = [var.indianapolis_vpc_public_subnet, var.indianapolis_vpc_web2_subnet]
 
   tags = {
     Environment = "indianapolis_application_lb"
@@ -303,7 +303,7 @@ resource "aws_lb_listener" "indianapolis_app_listener" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.indianapolis_web_target_group.arn
+    target_group_arn = aws_lb_target_group.indianapolis_public_target_group.arn
   }
 }
 #======================================================================================
