@@ -32,7 +32,7 @@ resource "aws_autoscaling_group" "detroit_public_scaling_group" {
   desired_capacity          = var.desired_capacity
   force_delete              = true
  #placement_group           = aws_placement_group.test.id
-  vpc_zone_identifier       = [var.detroit_vpc_public_subnet, var.detroit_vpc_web2_subnet]
+  vpc_zone_identifier       = [var.detroit_vpc_private_subnet, var.detroit_vpc_private2_subnet]
   target_group_arns         = [var.detroit_target_group_arn]
 
   launch_template {
@@ -99,7 +99,7 @@ resource "aws_autoscaling_group" "chicago_public_scaling_group" {
   desired_capacity          = var.desired_capacity
   force_delete              = true
  #placement_group           = aws_placement_group.test.id
-  vpc_zone_identifier       = [var.chicago_vpc_public_subnet, var.chicago_vpc_web2_subnet]
+  vpc_zone_identifier       = [var.chicago_vpc_private_subnet, var.chicago_vpc_private2_subnet]
   target_group_arns         = [var.chicago_target_group_arn]
 
   launch_template {
@@ -167,7 +167,7 @@ resource "aws_autoscaling_group" "columbus_public_scaling_group" {
   desired_capacity          = var.desired_capacity
   force_delete              = true
  #placement_group           = aws_placement_group.test.id
-  vpc_zone_identifier       = [var.columbus_vpc_public_subnet, var.columbus_vpc_web2_subnet]
+  vpc_zone_identifier       = [var.columbus_vpc_private_subnet, var.columbus_vpc_private2_subnet]
   target_group_arns         = [var.columbus_target_group_arn]
 
   launch_template {
@@ -235,7 +235,7 @@ resource "aws_autoscaling_group" "indianapolis_public_scaling_group" {
   desired_capacity          = var.desired_capacity
   force_delete              = true
  #placement_group           = aws_placement_group.test.id
-  vpc_zone_identifier       = [var.indianapolis_vpc_public_subnet, var.indianapolis_vpc_web2_subnet]
+  vpc_zone_identifier       = [var.indianapolis_vpc_private_subnet, var.indianapolis_vpc_private2_subnet]
   target_group_arns         = [var.indianapolis_target_group_arn]
 
   launch_template {

@@ -15,7 +15,7 @@ variable "detroit_public_subnet_cidr_block" {
   description = "the list of CIDR blocks for the web subnets"
 }
 
-variable "detroit_app_subnet_cidr_block" {
+variable "detroit_private_subnet_cidr_block" {
   type = list(string)
   description = "the list of CIDR blocks for the application subnets"
 }
@@ -39,7 +39,7 @@ variable "chicago_public_subnet_cidr_block" {
   description = "the list of CIDR blocks for the web subnets"
 }
 
-variable "chicago_app_subnet_cidr_block" {
+variable "chicago_private_subnet_cidr_block" {
   type = list(string)
   description = "the list of CIDR blocks for the application subnets"
 }
@@ -62,7 +62,7 @@ variable "columbus_public_subnet_cidr_block" {
   description = "the list of CIDR blocks for the web subnets"
 }
 
-variable "columbus_app_subnet_cidr_block" {
+variable "columbus_private_subnet_cidr_block" {
   type = list(string)
   description = "the list of CIDR blocks for the application subnets"
 }
@@ -86,7 +86,7 @@ variable "indianapolis_public_subnet_cidr_block" {
   description = "the list of CIDR blocks for the web subnets"
 }
 
-variable "indianapolis_app_subnet_cidr_block" {
+variable "indianapolis_private_subnet_cidr_block" {
   type = list(string)
   description = "the list of CIDR blocks for the application subnets"
 }

@@ -10,47 +10,47 @@ resource "aws_vpc" "columbus_vpc" {
 }
 
 #==================================================================
-resource "aws_subnet" "columbus_vpc_public_subnet_0" {
+resource "aws_subnet" "columbus_vpc_public_subnet" {
   vpc_id                  = aws_vpc.columbus_vpc.id
   cidr_block              = var.columbus_public_subnet_cidr_block[0]
   availability_zone       = var.availability_zones[0]
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "columbus_vpc_public_subnet_0"
+    Name = "columbus_vpc_public_subnet"
   }
 }
 
-resource "aws_subnet" "columbus_vpc_public_subnet_1" {
+resource "aws_subnet" "columbus_vpc_public2_subnet" {
   vpc_id                  = aws_vpc.columbus_vpc.id
   cidr_block              = var.columbus_public_subnet_cidr_block[1]
   availability_zone       = var.availability_zones[1]
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "columbus_vpc_public_subnet_1"
+    Name = "columbus_vpc_public2_subnet"
   }
 }
 
 #==================================================
 
-resource "aws_subnet" "columbus_vpc_app_subnet_0" {
+resource "aws_subnet" "columbus_vpc_private_subnet" {
   vpc_id                  = aws_vpc.columbus_vpc.id
   cidr_block              = var.columbus_app_subnet_cidr_block[0]
   availability_zone       = var.availability_zones[0]
 
   tags = {
-    Name = "columbus_vpc_app_subnet_0"
+    Name = "columbus_vpc_private_subnet"
   }
 }
 
-resource "aws_subnet" "columbus_vpc_app_subnet_1" {
+resource "aws_subnet" "columbus_vpc_private2_subnet" {
   vpc_id                  = aws_vpc.columbus_vpc.id
   cidr_block              = var.columbus_app_subnet_cidr_block[1]
   availability_zone       = var.availability_zones[1]
 
   tags = {
-    Name = "columbus_vpc_app_subnet_1"
+    Name = "columbus_vpc_private2_subnet"
   }
 }
 

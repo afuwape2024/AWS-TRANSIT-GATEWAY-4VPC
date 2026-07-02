@@ -5,6 +5,24 @@ resource "aws_network_acl" "detroit_vpc_public_nacl" {
   vpc_id = var.detroit_vpc
 
   ingress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  egress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  ingress {
     rule_no    = local.public_nacl.ingress_http.rule_no
     protocol   = local.public_nacl.ingress_http.protocol
     action     = local.public_nacl.ingress_http.action
@@ -50,13 +68,31 @@ resource "aws_network_acl_association" "detroit_vpc_public_nacl_ass" {
 }
 
 resource "aws_network_acl_association" "detroit_vpc_public_nacl_ass_2" {
-  subnet_id      = var.detroit_vpc_web2_subnet
+  subnet_id      = var.detroit_vpc_public2_subnet
   network_acl_id = aws_network_acl.detroit_vpc_public_nacl.id
 }
 #===================================================================
 
 resource "aws_network_acl" "detroit_vpc_app_nacl" {
   vpc_id = var.detroit_vpc
+
+  ingress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  egress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
 
   # Allow internal VPC traffic
   ingress {
@@ -94,18 +130,36 @@ resource "aws_network_acl" "detroit_vpc_app_nacl" {
 }
 
 resource "aws_network_acl_association" "detroit_vpc_app_nacl_ass" {
-  subnet_id      = var.detroit_vpc_app_subnet
+  subnet_id      = var.detroit_vpc_private_subnet
   network_acl_id = aws_network_acl.detroit_vpc_app_nacl.id
 }
 
 resource "aws_network_acl_association" "detroit_vpc_app_nacl_ass_2" {
-  subnet_id      = var.detroit_vpc_app2_subnet
+  subnet_id      = var.detroit_vpc_private2_subnet
   network_acl_id = aws_network_acl.detroit_vpc_app_nacl.id
 }
 #===================================================================
 
 resource "aws_network_acl" "detroit_vpc_database_nacl" {
   vpc_id = var.detroit_vpc
+
+  ingress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  egress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
 
   # Allow Database access ONLY from app/private subnet
   ingress {
@@ -161,6 +215,24 @@ resource "aws_network_acl" "chicago_vpc_public_nacl" {
   vpc_id = var.chicago_vpc
 
   ingress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  egress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  ingress {
     rule_no    = local.public_nacl.ingress_http.rule_no
     protocol   = local.public_nacl.ingress_http.protocol
     action     = local.public_nacl.ingress_http.action
@@ -205,12 +277,30 @@ resource "aws_network_acl_association" "chicago_public_1" {
 }
 
 resource "aws_network_acl_association" "chicago_public_2" {
-  subnet_id      = var.chicago_vpc_web2_subnet
+  subnet_id      = var.chicago_vpc_public2_subnet
   network_acl_id = aws_network_acl.chicago_vpc_public_nacl.id
 }
 
 resource "aws_network_acl" "chicago_vpc_app_nacl" {
   vpc_id = var.chicago_vpc
+
+  ingress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  egress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
 
   ingress {
     rule_no    = 100
@@ -243,12 +333,12 @@ resource "aws_network_acl" "chicago_vpc_app_nacl" {
 }
 
 resource "aws_network_acl_association" "chicago_app_1" {
-  subnet_id      = var.chicago_vpc_app_subnet
+  subnet_id      = var.chicago_vpc_private_subnet
   network_acl_id = aws_network_acl.chicago_vpc_app_nacl.id
 }
 
 resource "aws_network_acl_association" "chicago_app_2" {
-  subnet_id      = var.chicago_vpc_app2_subnet
+  subnet_id      = var.chicago_vpc_private2_subnet
   network_acl_id = aws_network_acl.chicago_vpc_app_nacl.id
 }
 
@@ -256,6 +346,24 @@ resource "aws_network_acl_association" "chicago_app_2" {
 
 resource "aws_network_acl" "chicago_vpc_database_nacl" {
   vpc_id = var.chicago_vpc
+
+  ingress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  egress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
 
   ingress {
     rule_no    = 100
@@ -303,6 +411,25 @@ resource "aws_network_acl" "chicago_vpc_database_nacl" {
 
 resource "aws_network_acl" "columbus_vpc_public_nacl" {
   vpc_id = var.columbus_vpc
+
+  ingress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  egress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
   # same ingress/egress as above
   tags = { Name = "columbus_vpc_public_nacl" }
 }
@@ -313,12 +440,30 @@ resource "aws_network_acl_association" "columbus_public_1" {
 }
 
 resource "aws_network_acl_association" "columbus_public_2" {
-  subnet_id      = var.columbus_vpc_web2_subnet
+  subnet_id      = var.columbus_vpc_public2_subnet
   network_acl_id = aws_network_acl.columbus_vpc_public_nacl.id
 }
 
 resource "aws_network_acl" "columbus_vpc_app_nacl" {
   vpc_id = var.columbus_vpc
+
+  ingress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  egress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
 
   ingress {
     rule_no    = 100
@@ -352,6 +497,24 @@ resource "aws_network_acl" "columbus_vpc_app_nacl" {
 
 resource "aws_network_acl" "columbus_vpc_database_nacl" {
   vpc_id = var.columbus_vpc
+
+  ingress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  egress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
 
   ingress {
     rule_no    = 100
@@ -399,6 +562,24 @@ resource "aws_network_acl" "columbus_vpc_database_nacl" {
 ##################
 resource "aws_network_acl" "indianapolis_vpc_public_nacl" {
   vpc_id = var.indianapolis_vpc
+
+  ingress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  egress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
 
   # same ingress/egress as your public_nacl locals
   ingress {
@@ -448,12 +629,30 @@ resource "aws_network_acl_association" "indianapolis_public_1" {
 }
 
 resource "aws_network_acl_association" "indianapolis_public_2" {
-  subnet_id      = var.indianapolis_vpc_web2_subnet
+  subnet_id      = var.indianapolis_vpc_public2_subnet
   network_acl_id = aws_network_acl.indianapolis_vpc_public_nacl.id
 }
 
 resource "aws_network_acl" "indianapolis_vpc_app_nacl" {
   vpc_id = var.indianapolis_vpc
+
+  ingress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  egress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
 
   ingress {
     rule_no    = 100
@@ -488,18 +687,36 @@ resource "aws_network_acl" "indianapolis_vpc_app_nacl" {
 }
 
 resource "aws_network_acl_association" "indianapolis_app_1" {
-  subnet_id      = var.indianapolis_vpc_app_subnet
+  subnet_id      = var.indianapolis_vpc_private_subnet
   network_acl_id = aws_network_acl.indianapolis_vpc_app_nacl.id
 }
 
 resource "aws_network_acl_association" "indianapolis_app_2" {
-  subnet_id      = var.indianapolis_vpc_app2_subnet
+  subnet_id      = var.indianapolis_vpc_private2_subnet
   network_acl_id = aws_network_acl.indianapolis_vpc_app_nacl.id
 }
 
 
 resource "aws_network_acl" "indianapolis_vpc_database_nacl" {
   vpc_id = var.indianapolis_vpc
+
+  ingress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
+
+  egress {
+    rule_no    = 90
+    protocol   = "-1"
+    action     = "allow"
+    cidr_block = "10.0.0.0/8"
+    from_port  = 0
+    to_port    = 0
+  }
 
   ingress {
     rule_no    = 100

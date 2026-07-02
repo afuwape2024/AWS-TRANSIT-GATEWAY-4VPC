@@ -79,20 +79,20 @@ locals {
 
   database_nacls = {
     detroit = {
-      app_cidrs = var.detroit_app_subnet_cidr_block
-      app_cidr  = var.detroit_app_subnet_cidr_block[0]
+      app_cidrs = var.detroit_private_subnet_cidr_block
+      app_cidr  = var.detroit_private_subnet_cidr_block[0]
     }
     chicago = {
-      app_cidrs = var.chicago_app_subnet_cidr_block
-      app_cidr  = var.chicago_app_subnet_cidr_block[0]
+      app_cidrs = var.chicago_private_subnet_cidr_block
+      app_cidr  = var.chicago_private_subnet_cidr_block[0]
     }
     columbus = {
-      app_cidrs = var.columbus_app_subnet_cidr_block
-      app_cidr  = var.columbus_app_subnet_cidr_block[0]
+      app_cidrs = var.columbus_private_subnet_cidr_block
+      app_cidr  = var.columbus_private_subnet_cidr_block[0]
     }
     indianapolis = {
-      app_cidrs = var.indianapolis_app_subnet_cidr_block
-      app_cidr  = var.indianapolis_app_subnet_cidr_block[0]
+      app_cidrs = var.indianapolis_private_subnet_cidr_block
+      app_cidr  = var.indianapolis_private_subnet_cidr_block[0]
     }
   }
 

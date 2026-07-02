@@ -3,6 +3,13 @@ resource "aws_security_group" "server_public_sg" {
   name        = "server_public_sg"
   description = "Security group for detroit_server"
     vpc_id      = var.detroit_vpc
+
+    ingress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["10.0.0.0/8"]
+    }
     
     ingress {
         from_port   = 80
@@ -35,6 +42,13 @@ resource "aws_security_group" "app_sg" {
   vpc_id = var.detroit_vpc
 
   ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+
+  ingress {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
@@ -45,6 +59,13 @@ resource "aws_security_group" "app_sg" {
 resource "aws_security_group" "database_sg" {
   name   = "db_sg"
   vpc_id = var.detroit_vpc
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
 
   ingress {
     from_port       = 3306
@@ -61,6 +82,13 @@ resource "aws_security_group" "server_public_sg_chicago" {
   name        = "server_public_sg"
   description = "Security group for chicago_server"
   vpc_id      = var.chicago_vpc
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
     
   ingress {
     from_port   = 80
@@ -94,6 +122,13 @@ resource "aws_security_group" "app_sg_chicago" {
   vpc_id = var.chicago_vpc
 
   ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+
+  ingress {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
@@ -105,6 +140,13 @@ resource "aws_security_group" "app_sg_chicago" {
 resource "aws_security_group" "database_sg_chicago" {
   name   = "db_sg"
   vpc_id = var.chicago_vpc
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
 
   ingress {
     from_port       = 3306
@@ -121,6 +163,13 @@ resource "aws_security_group" "server_public_sg_columbus" {
   name        = "server_public_sg"
   description = "Security group for columbus_server"
   vpc_id      = var.columbus_vpc
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
     
   ingress {
     from_port   = 80
@@ -155,6 +204,13 @@ resource "aws_security_group" "app_sg_columbus" {
   vpc_id = var.columbus_vpc
 
   ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+
+  ingress {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
@@ -166,6 +222,13 @@ resource "aws_security_group" "app_sg_columbus" {
 resource "aws_security_group" "database_sg_columbus" {
   name   = "db_sg"
   vpc_id = var.columbus_vpc
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
 
   ingress {
     from_port       = 3306
@@ -181,6 +244,13 @@ resource "aws_security_group" "server_public_sg_indianapolis" {
   name        = "server_public_sg"
   description = "Security group for indianapolis_server"
   vpc_id      = var.indianapolis_vpc
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
     
   ingress {
     from_port   = 80
@@ -215,6 +285,13 @@ resource "aws_security_group" "app_sg_indianapolis" {
   vpc_id = var.indianapolis_vpc
 
   ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+
+  ingress {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
@@ -226,6 +303,13 @@ resource "aws_security_group" "app_sg_indianapolis" {
 resource "aws_security_group" "database_sg_indianapolis" {
   name   = "db_sg"
   vpc_id = var.indianapolis_vpc
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
 
   ingress {
     from_port       = 3306

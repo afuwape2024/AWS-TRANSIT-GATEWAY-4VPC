@@ -10,7 +10,7 @@ variable "detroit_public_subnet_cidr_block" {
 	type = list(string)
 }
 
-variable "detroit_app_subnet_cidr_block" {
+variable "detroit_private_subnet_cidr_block" {
 	type = list(string)
 }
 

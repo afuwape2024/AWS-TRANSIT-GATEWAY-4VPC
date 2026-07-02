@@ -51,7 +51,7 @@ resource "aws_route_table" "detroit_vpc_private_route_table" {
         "Name" = "detroit_vpc_private_route_table"
     }
 }
-#create rout table for detroit_vpc_private_subnet
+###create rout table for detroit_vpc_private_subnet
 resource "aws_route_table_association" "detroit_vpc_private_route_table_association" {
   subnet_id      = var.detroit_vpc_private_subnet
   route_table_id = aws_route_table.detroit_vpc_private_route_table.id
@@ -74,6 +74,63 @@ resource "aws_route_table" "detroit_vpc_private_database_route_table" {
 resource "aws_route_table_association" "detroit_vpc_database_route_table_association" {
   subnet_id      = var.detroit_vpc_database_subnet_0
   route_table_id = aws_route_table.detroit_vpc_private_database_route_table.id
+}
+
+#########################################################
+#FOR CONNECTION FROM SUBNET TO ANOTHER VPC THROUGH TRANSIT GATEWAY
+#########################################################
+resource "aws_route" "detroit_public_to_chicago" {
+  route_table_id         = aws_route_table.detroit_vpc_public_route_table.id
+  destination_cidr_block = var.chicago_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "detroit_public_to_columbus" {
+  route_table_id         = aws_route_table.detroit_vpc_public_route_table.id
+  destination_cidr_block = var.columbus_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "detroit_public_to_indianapolis" {
+  route_table_id         = aws_route_table.detroit_vpc_public_route_table.id
+  destination_cidr_block = var.indianapolis_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "detroit_private_to_chicago" {
+  route_table_id         = aws_route_table.detroit_vpc_private_route_table.id
+  destination_cidr_block = var.chicago_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "detroit_private_to_columbus" {
+  route_table_id         = aws_route_table.detroit_vpc_private_route_table.id
+  destination_cidr_block = var.columbus_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "detroit_private_to_indianapolis" {
+  route_table_id         = aws_route_table.detroit_vpc_private_route_table.id
+  destination_cidr_block = var.indianapolis_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "detroit_database_to_chicago" {
+  route_table_id         = aws_route_table.detroit_vpc_private_database_route_table.id
+  destination_cidr_block = var.chicago_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "detroit_database_to_columbus" {
+  route_table_id         = aws_route_table.detroit_vpc_private_database_route_table.id
+  destination_cidr_block = var.columbus_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "detroit_database_to_indianapolis" {
+  route_table_id         = aws_route_table.detroit_vpc_private_database_route_table.id
+  destination_cidr_block = var.indianapolis_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
 }
 
 
@@ -159,6 +216,63 @@ resource "aws_route_table_association" "chicago_vpc_database_route_table_associa
   subnet_id      = var.chicago_vpc_database_subnet_0
   route_table_id = aws_route_table.chicago_vpc_private_database_route_table.id
 }
+
+#########################################################
+#FOR CONNECTION FROM SUBNET TO ANOTHER VPC THROUGH TRANSIT GATEWAY
+#########################################################
+resource "aws_route" "chicago_public_to_detroit" {
+  route_table_id         = aws_route_table.chicago_vpc_public_route_table.id
+  destination_cidr_block = var.detroit_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "chicago_public_to_columbus" {
+  route_table_id         = aws_route_table.chicago_vpc_public_route_table.id
+  destination_cidr_block = var.columbus_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "chicago_public_to_indianapolis" {
+  route_table_id         = aws_route_table.chicago_vpc_public_route_table.id
+  destination_cidr_block = var.indianapolis_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "chicago_private_to_detroit" {
+  route_table_id         = aws_route_table.chicago_vpc_private_route_table.id
+  destination_cidr_block = var.detroit_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "chicago_private_to_columbus" {
+  route_table_id         = aws_route_table.chicago_vpc_private_route_table.id
+  destination_cidr_block = var.columbus_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "chicago_private_to_indianapolis" {
+  route_table_id         = aws_route_table.chicago_vpc_private_route_table.id
+  destination_cidr_block = var.indianapolis_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "chicago_database_to_detroit" {
+  route_table_id         = aws_route_table.chicago_vpc_private_database_route_table.id
+  destination_cidr_block = var.detroit_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "chicago_database_to_columbus" {
+  route_table_id         = aws_route_table.chicago_vpc_private_database_route_table.id
+  destination_cidr_block = var.columbus_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "chicago_database_to_indianapolis" {
+  route_table_id         = aws_route_table.chicago_vpc_private_database_route_table.id
+  destination_cidr_block = var.indianapolis_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
 #==================================================================
 
 #==================================================================
@@ -243,6 +357,63 @@ resource "aws_route_table_association" "columbus_vpc_database_route_table_associ
   route_table_id = aws_route_table.columbus_vpc_private_database_route_table.id
 }
 
+#########################################################
+#FOR CONNECTION FROM SUBNET TO ANOTHER VPC THROUGH TRANSIT GATEWAY
+#########################################################
+resource "aws_route" "columbus_public_to_detroit" {
+  route_table_id         = aws_route_table.columbus_vpc_public_route_table.id
+  destination_cidr_block = var.detroit_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "columbus_public_to_chicago" {
+  route_table_id         = aws_route_table.columbus_vpc_public_route_table.id
+  destination_cidr_block = var.chicago_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "columbus_public_to_indianapolis" {
+  route_table_id         = aws_route_table.columbus_vpc_public_route_table.id
+  destination_cidr_block = var.indianapolis_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "columbus_private_to_detroit" {
+  route_table_id         = aws_route_table.columbus_vpc_private_route_table.id
+  destination_cidr_block = var.detroit_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "columbus_private_to_chicago" {
+  route_table_id         = aws_route_table.columbus_vpc_private_route_table.id
+  destination_cidr_block = var.chicago_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "columbus_private_to_indianapolis" {
+  route_table_id         = aws_route_table.columbus_vpc_private_route_table.id
+  destination_cidr_block = var.indianapolis_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "columbus_database_to_detroit" {
+  route_table_id         = aws_route_table.columbus_vpc_private_database_route_table.id
+  destination_cidr_block = var.detroit_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "columbus_database_to_chicago" {
+  route_table_id         = aws_route_table.columbus_vpc_private_database_route_table.id
+  destination_cidr_block = var.chicago_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "columbus_database_to_indianapolis" {
+  route_table_id         = aws_route_table.columbus_vpc_private_database_route_table.id
+  destination_cidr_block = var.indianapolis_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
 #==================================================================
 
 #==================================================================
@@ -325,6 +496,64 @@ resource "aws_route_table" "indianapolis_vpc_private_database_route_table" {
 resource "aws_route_table_association" "indianapolis_vpc_database_route_table_association" {
   subnet_id      = var.indianapolis_vpc_database_subnet_0
   route_table_id = aws_route_table.indianapolis_vpc_private_database_route_table.id
+}
+
+
+#########################################################
+#FOR CONNECTION FROM SUBNET TO ANOTHER VPC THROUGH TRANSIT GATEWAY
+#########################################################
+resource "aws_route" "indianapolis_public_to_detroit" {
+  route_table_id         = aws_route_table.indianapolis_vpc_public_route_table.id
+  destination_cidr_block = var.detroit_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "indianapolis_public_to_chicago" {
+  route_table_id         = aws_route_table.indianapolis_vpc_public_route_table.id
+  destination_cidr_block = var.chicago_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "indianapolis_public_to_columbus" {
+  route_table_id         = aws_route_table.indianapolis_vpc_public_route_table.id
+  destination_cidr_block = var.columbus_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "indianapolis_private_to_detroit" {
+  route_table_id         = aws_route_table.indianapolis_vpc_private_route_table.id
+  destination_cidr_block = var.detroit_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "indianapolis_private_to_chicago" {
+  route_table_id         = aws_route_table.indianapolis_vpc_private_route_table.id
+  destination_cidr_block = var.chicago_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "indianapolis_private_to_columbus" {
+  route_table_id         = aws_route_table.indianapolis_vpc_private_route_table.id
+  destination_cidr_block = var.columbus_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "indianapolis_database_to_detroit" {
+  route_table_id         = aws_route_table.indianapolis_vpc_private_database_route_table.id
+  destination_cidr_block = var.detroit_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "indianapolis_database_to_chicago" {
+  route_table_id         = aws_route_table.indianapolis_vpc_private_database_route_table.id
+  destination_cidr_block = var.chicago_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
+}
+
+resource "aws_route" "indianapolis_database_to_columbus" {
+  route_table_id         = aws_route_table.indianapolis_vpc_private_database_route_table.id
+  destination_cidr_block = var.columbus_vpc_cidr_block
+  transit_gateway_id     = var.transit_gateway_id
 }
 #==================================================================
 
