@@ -296,6 +296,9 @@ module "transit_gateway" {
 
 }
 
+module "Single_bastion" {
+  source = "../../modules/9instance"
+}
 
 
 

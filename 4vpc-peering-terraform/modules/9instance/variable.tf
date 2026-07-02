@@ -50,3 +50,9 @@ variable "detroit_app_sg_id" {
 variable "detroit_db_sg_id" {
   description = "The security group ID for the Detroit database server"
 }
+
+variable "key_pair_name" {
+  description = "Existing EC2 key pair name to attach to instances"
+  type        = string
+  default     = null
+}

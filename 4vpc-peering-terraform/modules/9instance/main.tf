@@ -17,6 +17,7 @@ resource "aws_instance" "app_server" {
   subnet_id = var.detroit_vpc_app_subnet
   vpc_security_group_ids = [var.detroit_app_sg_id]
   user_data = file("${path.module}/user_data.sh")
+  key_name = var.key_pair_name
 
   tags = {
     Name = "Detroit App Server"
