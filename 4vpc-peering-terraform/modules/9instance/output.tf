@@ -1,7 +1,5 @@
 output "public_server" {
-  value = aws_instance.app_server.id
+  value = aws_instance.Single_bastion_server.id
 }
-output "app_server" {
-  value = aws_instance.app_server.id
-}
+
 
