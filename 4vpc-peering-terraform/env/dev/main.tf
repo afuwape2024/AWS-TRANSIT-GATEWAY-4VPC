@@ -1,3 +1,8 @@
+resource "aws_key_pair" "instance_keypair" {
+  key_name   = var.key_pair_name
+  public_key = file("${path.module}/keypair.pub")
+}
+
 module "detroit_vpc" {
   source                             = "../../modules/1detroit_vpc"
   detroit_vpc                        = var.detroit_vpc
@@ -185,7 +190,7 @@ module "auto_scale" {
   indianapolis_target_group_arn = module.load_balancer.indianapolis_public_target_group
   image_id                      = var.image_id
   instance_type                 = var.instance_type
-  key_pair_name                 = var.key_pair_name
+  key_pair_name                 = aws_key_pair.instance_keypair.key_name
 
   detroit_vpc                   = module.detroit_vpc.detroit_vpc
   detroit_vpc_public_subnet     = module.detroit_vpc.detroit_vpc_public_subnet
@@ -335,7 +340,7 @@ module "Single_bastion" {
 
   image_id      = var.image_id
   instance_type = var.instance_type
-  key_pair_name = var.key_pair_name
+  key_pair_name = aws_key_pair.instance_keypair.key_name
 
   detroit_public_sg_id = module.security_group.detroit_public_sg_id
   detroit_app_sg_id    = module.security_group.detroit_app_sg_id
