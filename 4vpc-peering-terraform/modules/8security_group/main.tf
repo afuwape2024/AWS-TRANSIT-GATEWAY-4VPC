@@ -1,6 +1,6 @@
 #create security group for all the VPC
 resource "aws_security_group" "server_public_sg_detroit" {
-  name        = "server_public_sg"
+  name        = "server_public_sg_detroit"
   description = "Security group for detroit_server"
     vpc_id      = var.detroit_vpc
 
@@ -37,8 +37,8 @@ resource "aws_security_group" "server_public_sg_detroit" {
 }
 
 
-resource "aws_security_group" "app_sg" {
-  name   = "app_sg"
+resource "aws_security_group" "app_sg_detroit" {
+  name   = "app_sg_detroit"
   vpc_id = var.detroit_vpc
 
   ingress {
@@ -52,8 +52,11 @@ resource "aws_security_group" "app_sg" {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
-    security_groups = [aws_security_group.server_public_sg.id]
+    security_groups = [aws_security_group.server_public_sg_detroit.id]
   }
+  tags = {
+        "Name" = "app_sg_detroit"
+    }
 }
 
 resource "aws_security_group" "database_sg" {
@@ -71,8 +74,11 @@ resource "aws_security_group" "database_sg" {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = [aws_security_group.app_sg.id]
+    security_groups = [aws_security_group.app_sg_detroit.id]
   }
+  tags = {
+        "Name" = "database_sg_detroit"
+    }
 }
 
 
@@ -118,7 +124,7 @@ resource "aws_security_group" "server_public_sg_chicago" {
 }
 
 resource "aws_security_group" "app_sg_chicago" {
-  name   = "app_sg"
+  name   = "app_sg_chicago"
   vpc_id = var.chicago_vpc
 
   ingress {
@@ -134,11 +140,13 @@ resource "aws_security_group" "app_sg_chicago" {
     protocol        = "tcp"
     security_groups = [aws_security_group.server_public_sg_chicago.id]
   }
-
+  tags = {
+        "Name" = "app_sg_chicago"
+    }
 }
 
 resource "aws_security_group" "database_sg_chicago" {
-  name   = "db_sg"
+  name   = "database_sg_chicago"
   vpc_id = var.chicago_vpc
 
   ingress {
@@ -154,13 +162,16 @@ resource "aws_security_group" "database_sg_chicago" {
     protocol        = "tcp"
     security_groups = [aws_security_group.app_sg_chicago.id]
   }
+  tags = {
+        "Name" = "database_sg_chicago"
+    }
 }
 
 #########################################
 #########################################
 #########################################
 resource "aws_security_group" "server_public_sg_columbus" {
-  name        = "server_public_sg"
+  name        = "server_public_sg_columbus"
   description = "Security group for columbus_server"
   vpc_id      = var.columbus_vpc
 
@@ -200,7 +211,7 @@ resource "aws_security_group" "server_public_sg_columbus" {
 }
 
 resource "aws_security_group" "app_sg_columbus" {
-  name   = "app_sg"
+  name   = "app_sg_columbus"
   vpc_id = var.columbus_vpc
 
   ingress {
@@ -216,11 +227,13 @@ resource "aws_security_group" "app_sg_columbus" {
     protocol        = "tcp"
     security_groups = [aws_security_group.server_public_sg_columbus.id]
   }
-
+  tags = {
+    Name = "app_sg_columbus"
+  }
 }
 
 resource "aws_security_group" "database_sg_columbus" {
-  name   = "db_sg"
+  name   = "database_sg_columbus"
   vpc_id = var.columbus_vpc
 
   ingress {
@@ -236,12 +249,15 @@ resource "aws_security_group" "database_sg_columbus" {
     protocol        = "tcp"
     security_groups = [aws_security_group.app_sg_columbus.id]
   }
+  tags = {
+    Name = "database_sg_columbus"
+  }
 }
 #########################################
 #########################################
 #########################################
 resource "aws_security_group" "server_public_sg_indianapolis" {
-  name        = "server_public_sg"
+  name        = "server_public_sg_indianapolis"
   description = "Security group for indianapolis_server"
   vpc_id      = var.indianapolis_vpc
 
@@ -274,14 +290,13 @@ resource "aws_security_group" "server_public_sg_indianapolis" {
     protocol    = "tcp"
     cidr_blocks = [var.outside_cidr_block]
   }
-
   tags = {
     Name = "server_public_sg_indianapolis"
   }
 }
 
 resource "aws_security_group" "app_sg_indianapolis" {
-  name   = "app_sg"
+  name   = "app_sg_indianapolis"
   vpc_id = var.indianapolis_vpc
 
   ingress {
@@ -297,11 +312,13 @@ resource "aws_security_group" "app_sg_indianapolis" {
     protocol        = "tcp"
     security_groups = [aws_security_group.server_public_sg_indianapolis.id]
   }
-
+  tags = {
+    Name = "app_sg_indianapolis"
+  }
 }
 
 resource "aws_security_group" "database_sg_indianapolis" {
-  name   = "db_sg"
+  name   = "database_sg_indianapolis"
   vpc_id = var.indianapolis_vpc
 
   ingress {
@@ -316,6 +333,9 @@ resource "aws_security_group" "database_sg_indianapolis" {
     to_port         = 3306
     protocol        = "tcp"
     security_groups = [aws_security_group.app_sg_indianapolis.id]
+  }
+  tags = {
+    Name = "database_sg_indianapolis"
   }
 }
 #########################################
