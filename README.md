@@ -1,39 +1,33 @@
-# AWS Transit Gateway with 4 VPCs (Terraform)
+# AWS Transit Gateway with 4 VPCs
 
-Terraform project that builds a multi-VPC network in AWS using a central Transit Gateway, with shared connectivity across four regional VPC environments:
+[![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform&logoColor=white)](https://www.terraform.io/)
+[![AWS](https://img.shields.io/badge/AWS-Multi--VPC-orange?logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
+[![Status](https://img.shields.io/badge/Status-Ready%20for%20Demo-success)]()
 
-- Detroit
-- Chicago
-- Columbus
-- Indianapolis
-![alt text](image-3.png)
+Terraform builds a four-VPC AWS network connected through a central Transit Gateway, with a bastion host for access, Auto Scaling Groups with launch templates for the app tier, application load balancers, and MySQL database layers across Detroit, Chicago, Columbus, and Indianapolis.
 
-Each VPC includes public, private, and database subnets, plus internet gateway, route tables, NACLs, and security groups. The stack also provisions a bastion host, application instances (ASG), load balancers, and MySQL database resources.
+### Highlights
+
+- Central Transit Gateway linking four VPCs
+- Bastion host for controlled SSH access
+- Auto Scaling Groups with launch templates for application instances
+- Application load balancers for traffic distribution
+- Public, private, and database subnet segmentation in each VPC
 
 ## Architecture
 
-flowchart LR
-		TGW[Central Transit Gateway]
-![alt text](image-8.png)
+![Architecture](image-1.png)
 
-		D[Detroit VPC 10.0.0.0/16]
-		C[Chicago VPC 10.1.0.0/16]
-		O[Columbus VPC 10.2.0.0/16]
-		I[Indianapolis VPC 10.3.0.0/16]
-        ![alt text](image-4.png)
-![alt text](image-5.png)
-![alt text](image-6.png)
-![alt text](image-7.png)
+![Transit Gateway](image-8.png)
 
-		Transit gateway route table
-![alt text](image-9.png)
+![VPC Topology](image-4.png)
+![VPC Topology](image-5.png)
+![VPC Topology](image-6.png)
+![VPC Topology](image-7.png)
 
-		B[Bastion Host in Detroit Public Subnet]
-		A1[Detroit App Instances]
-		A2[Chicago App Instances]
-		A3[Columbus App Instances]
-		A4[Indianapolis App Instances]
-![alt text](image-10.png)
+![Route Table](image-9.png)
+
+![Connectivity Validation](image-10.png)
 
 ## Repository Structure
 
