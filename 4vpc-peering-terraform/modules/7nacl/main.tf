@@ -23,6 +23,15 @@ resource "aws_network_acl" "detroit_vpc_public_nacl" {
   }
 
   ingress {
+    rule_no    = 115
+    protocol   = "tcp"
+    action     = "allow"
+    cidr_block = var.outside_cidr_block
+    from_port  = 22
+    to_port    = 22
+  }
+
+  ingress {
     rule_no    = local.public_nacl.ingress_http.rule_no
     protocol   = local.public_nacl.ingress_http.protocol
     action     = local.public_nacl.ingress_http.action
@@ -39,6 +48,8 @@ resource "aws_network_acl" "detroit_vpc_public_nacl" {
     from_port  = local.public_nacl.ingress_https.from_port
     to_port    = local.public_nacl.ingress_https.to_port
   }
+
+ 
 
   ingress {
     rule_no    = local.public_nacl.ingress_ephemeral.rule_no
