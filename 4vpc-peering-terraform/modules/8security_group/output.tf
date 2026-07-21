@@ -1,7 +1,7 @@
 #==================================
 #==================================
 output "detroit_public_sg_id" {
-  value = aws_security_group.server_public_sg.id
+  value = aws_security_group.server_public_sg_detroit.id
 }
 
 output "detroit_app_sg_id" {

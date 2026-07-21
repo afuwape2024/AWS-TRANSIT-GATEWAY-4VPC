@@ -195,7 +195,7 @@ resource "aws_security_group" "server_public_sg_columbus" {
   }
 
   tags = {
-    Name = "server_public_sg"
+    Name = "server_public_sg_columbus"
   }
 }
 
@@ -276,7 +276,7 @@ resource "aws_security_group" "server_public_sg_indianapolis" {
   }
 
   tags = {
-    Name = "server_public_sg"
+    Name = "server_public_sg_indianapolis"
   }
 }
 
