@@ -31,6 +31,14 @@ resource "aws_security_group" "server_public_sg_detroit" {
         protocol    = "tcp"
         cidr_blocks = [var.outside_cidr_block]
     }
+#creating outbound rule for bashion host connection
+    egress {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = [var.outside_cidr_block]
+    }
+
     tags = {
         "Name" = "server_public_sg_detroit"
     }
