@@ -1,5 +1,5 @@
 #create security group for all the VPC
-resource "aws_security_group" "server_public_sg" {
+resource "aws_security_group" "detroit_public_sg" {
   name        = "server_public_sg"
   description = "Security group for detroit_server"
     vpc_id      = var.detroit_vpc
@@ -32,7 +32,7 @@ resource "aws_security_group" "server_public_sg" {
         cidr_blocks = [var.outside_cidr_block]
     }
     tags = {
-        "Name" = "server_public_sg"
+        "Name" = "detroit_public_sg"
     }
 }
 
